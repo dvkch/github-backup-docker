@@ -15,7 +15,7 @@ while :; do
 
   if [ -z "$OUTPUT_DIRECTORY" ]; then
     OUTPUT_DIRECTORY="${DATE}"
-  done
+  fi
 
 	if [ -z "$GITHUB_USER" ]
 	  then

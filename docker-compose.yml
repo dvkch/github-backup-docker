@@ -3,7 +3,7 @@ version: "2"
 services:
   github-backup:
     build: .
-    image: ghcr.io/umputun/github-backup-docker:latest
+    image: syanme/github-backup-docker:latest
     container_name: "github-backup"
     hostname: "github-backup"
     restart: always
@@ -19,6 +19,7 @@ services:
       - TOKEN=${GITHUB_ACCESS_TOKEN}
       - MAX_BACKUPS=10
       - TIME_ZONE=America/Chicago
-      - BACKUP_OPTIONS=--all --private --gists
+      - OUTPUT_DIRECTORY="backup"
+      - BACKUP_OPTIONS=--all --private --gists --incremental
     volumes:
       - ./var:/srv/var

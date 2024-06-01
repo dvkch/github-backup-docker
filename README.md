@@ -8,6 +8,8 @@ This project has been forked to add the following env variable support : "OUTPUT
 
 This option makes possible the use of `--incremental` option in `BACKUP_OPTIONS`.
 
+The image is available at [syanme/github-backup-docker](https://hub.docker.com/r/syanme/github-backup-docker).
+
 ## Install and run
 
 1. Generate github [access token](https://github.com/settings/tokens). Give it a `repo` scope with full access to repositories.
