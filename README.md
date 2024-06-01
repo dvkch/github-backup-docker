@@ -2,6 +2,12 @@
 
 Dockerized version of [python-github-backup](https://github.com/josegonzalez/python-github-backup) with extra automation. This container makes a backup daily and keeps up to defined number of backups.
 
+## Fork
+
+This project has been forked to add the following env variable support : "OUTPUT_DIRECTORY". If it is empty it will be set to the current date. The resulting output shall be `/srv/var/${OUTPUT_DIRECTORY}/${user}"` or `/srv/var/${OUTPUT_DIRECTORY}/${organization}`.
+
+This option makes possible the use of `--incremental` option in `BACKUP_OPTIONS`.
+
 ## Install and run
 
 1. Generate github [access token](https://github.com/settings/tokens). Give it a `repo` scope with full access to repositories.

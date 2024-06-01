@@ -11,7 +11,11 @@ echo "${TIME_ZONE}" >/etc/timezone
 
 echo "$(date) - start backup scheduler"
 while :; do
-    DATE=$(date +%Y%m%d-%H%M%S)
+  DATE=$(date +%Y%m%d-%H%M%S)
+
+  if [ -z "$OUTPUT_DIRECTORY" ]; then
+    OUTPUT_DIRECTORY="${DATE}"
+  done
 
 	if [ -z "$GITHUB_USER" ]
 	  then
@@ -19,7 +23,7 @@ while :; do
     else
       for u in $(echo $GITHUB_USER | tr "," "\n"); do
         echo "$(date) - execute backup for User ${u}, ${DATE}"
-        github-backup ${u} --token=$TOKEN --output-directory=/srv/var/${DATE}/${u} ${BACKUP_OPTIONS}
+        github-backup ${u} --token=$TOKEN --output-directory="/srv/var/${OUTPUT_DIRECTORY}/${u}" ${BACKUP_OPTIONS}
       done
   fi
 
@@ -29,7 +33,7 @@ while :; do
     else
       for o in $(echo $GITHUB_ORG | tr "," "\n"); do
         echo "$(date) - execute backup for Organization ${u}, ${DATE}"
-        github-backup ${o} --organization --token=$TOKEN --output-directory=/srv/var/${DATE}/${o} ${BACKUP_OPTIONS}
+        github-backup ${o} --organization --token=$TOKEN --output-directory="/srv/var/${OUTPUT_DIRECTORY}/${o}" ${BACKUP_OPTIONS}
       done
 	fi
 
